@@ -1,16 +1,15 @@
 <?php
-// $host = 'localhost';
-// $dbname = 'atendelab';
-// $user = 'root';
-// $password = '';
 
-$host = getenv('DB_HOST') ?: 'localhost';
-$dbname = getenv('DB_NAME') ?: 'atendelab';
-$user = getenv('DB_USER') ?: 'root';
-$password = getenv('DB_PASS') ?: '';
+$host     = 'localhost';
+$dbname   = 'atendelab';
+$user     = 'root';
+$password = ''; 
+$port     = '3307';
+
+
 try {
  $pdo = new PDO(
- "mysql:host=$host;dbname=$dbname;charset=utf8mb4",
+ "mysql:host=$host;dbname=$dbname;port=$port;charset=utf8mb4",
  $user,
  $password
  );
@@ -18,3 +17,6 @@ try {
 } catch (PDOException $e) {
  die('Erro ao conectar com o banco de dados: ' . $e->getMessage());
 }
+
+
+?>
