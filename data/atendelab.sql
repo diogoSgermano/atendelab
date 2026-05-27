@@ -126,3 +126,19 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+create table atendimentos(
+	id_atendimento int primary key auto_increment not null,
+    data_atendimento datetime default current_timestamp not null,
+    descricao_atendimento varchar(255),
+    
+    usuario_id int,
+    pessoa_id int,
+    tipo_atendimento_id int,
+    
+    foreign key (usuario_id) references usuarios(id),
+	foreign key (pessoa_id) references pessoas(id_pessoa),
+    foreign key (tipo_atendimento_id) references tipos_atendimentos(id_tipos_atendimentos)
+
+    
+);
