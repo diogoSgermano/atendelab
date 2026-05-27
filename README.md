@@ -24,3 +24,17 @@ Software.
 4. Criar o banco atendelab.
 5. Importar o script database/atendelab.sql.
 6. Acessar http://localhost/atendelab/public/
+
+# Para o Professor:
+
+## Print do phpMyAdmin
+![alt text](print-phpMyAdmin.png)
+---
+## Print da tabela ***usuarios***
+![alt text](print-tabela-usuarios.png)
+---
+## Print da página index funcionando
+![alt text](index-funcionando.png)
+---
+## Print do teste de conexão com banco de dados funcionando
+![alt text](teste-conexao-funcionando.png)
