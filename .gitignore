@@ -11,3 +11,6 @@ Thumbs.db
 # Arquivos temporários
 *.tmp
 *.bak
+
+#db
+config/config.local.php
