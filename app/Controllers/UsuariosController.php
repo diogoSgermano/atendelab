@@ -53,7 +53,7 @@ class UsuariosController
 
         $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if (!usuario) {
+        if (!$usuario) {
             http_response_code(404);
             echo json_encode(['erro' => 'Usuário não encontrado.']);
             return;
@@ -71,10 +71,10 @@ class UsuariosController
         $email = trim($_POST['email'] ?? '');
         $senha = $_POST['senha'] ?? '';
         $perfil = $_POST['perfil'] ?? 'atendente';
-        $status = $_POST['nome'] ?? 'ativo';
+        $status = $_POST['status'] ?? 'ativo';
 
         //Regras mínimas de validação de entrada.
-        if ($nome === '' || $email === '' || senha === '') {
+        if ($nome === '' || $email === '' || $senha === '') {
             http_response_code(400);
             echo json_encode(['erro' => 'Nome, e-mail e senha são obrigatórios.']);
             return;
@@ -185,10 +185,10 @@ class UsuariosController
     public function excluir(): void
     {
         header('Content-Type: application/json; charset=utf-8');
-
+    
         // Exclusão por ID recebido no corpo da requisição.
         $id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
-
+        
         if (!$id) {
             http_response_code(400);
             echo json_encode(['erro' => 'ID inválido.']);
@@ -201,8 +201,14 @@ class UsuariosController
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
 
-            echo json_encode(['mensagem' => 'Usuário excluído com sucesso.'], JSON_UNESCAPED_UNICODE);
-        } catch (PDOException $e) {
+            if ($stmt->rowCount() === 0) {
+                http_response_code(404);
+                echo json_encode(['erro' => 'Usuário não encontrado.']);
+                return;
+            }
+
+            echo json_encode(['mensagem' => 'Usuário excluído com sucesso.']);           
+            } catch (PDOException $e) {
             http_response_code(500);
             echo json_encode(['erro' => 'Erro ao excluir usuário.']);
         }
