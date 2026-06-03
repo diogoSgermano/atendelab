@@ -12,5 +12,5 @@ Thumbs.db
 *.tmp
 *.bak
 
-#db
+#db 
 config/config.local.php
