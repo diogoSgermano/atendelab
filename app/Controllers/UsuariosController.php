@@ -87,7 +87,7 @@ class UsuariosController
         }
 
         //Whitelist de valores válidos para campos de domínio.
-        if (!in_array($perfil, ['admin', 'atendente', 'aluno'], true)) {
+        if (!in_array($perfil, ['admin', 'aluno', 'atendente'], true)) {
             http_response_code(400);
             echo json_encode(['erro' => 'Perfil inválido.']);
             return;
@@ -142,12 +142,12 @@ class UsuariosController
         }
 
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        http_response_code(400);
-        echo json_encode(['erro' => 'E-mail inválido.']);
-        return;
+            http_response_code(400);
+            echo json_encode(['erro' => 'E-mail inválido.']);
+            return;
         }
 
-        if (!in_array($perfil, ['admin', 'atendente', 'aluno'], true)) {
+        if (!in_array($perfil, ['admin', 'aluno', 'atendente'], true)) {
             http_response_code(400);
             echo json_encode(['erro' => 'Perfil inválido.']);
             return;
